@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bygsjkn6a7e3t"]
+
+[ext_resource type="Script" path="res://scripts/sensors.gd" id="1_xe7ae"]
+
+[node name="ObjBot" type="Node2D"]
+script = ExtResource("1_xe7ae")

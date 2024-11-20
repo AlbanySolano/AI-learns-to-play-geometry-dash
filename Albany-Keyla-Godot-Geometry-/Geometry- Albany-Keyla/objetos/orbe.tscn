@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bie7avr6g3mq2"]
+
+[ext_resource type="Script" path="res://scripts/orbe.gd" id="1_v7565"]
+[ext_resource type="Texture2D" uid="uid://boub4p4udfqmf" path="res://imagenes/YellowJumpRing.png" id="2_vie7p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5545s"]
+size = Vector2(74, 68)
+
+[node name="orbe" type="Area2D" groups=["orbe"]]
+script = ExtResource("1_v7565")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.74, 0.67)
+texture = ExtResource("2_vie7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5545s")

@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://cw7205t6rossp"]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_agb7f"]
+[ext_resource type="Texture2D" uid="uid://bb6c470xu0mc" path="res://imagenes/jugador.jpg" id="2_18wvb"]
+[ext_resource type="Script" path="res://scripts/externo.gd" id="3_bogig"]
+[ext_resource type="Script" path="res://scripts/muerte.gd" id="3_erwrd"]
+[ext_resource type="AudioStream" uid="uid://b21a68ni0k1by" path="res://sounds/geometry-dash-death-sound-effect.mp3" id="5_po5pr"]
+[ext_resource type="AudioStream" uid="uid://cwjflfsid87b0" path="res://sounds/sunset-drive-synthwave-hip-hop-instrumental-beat-242045.mp3" id="6_p2ffq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgftb"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln173"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_be7s0"]
+size = Vector2(32, 32)
+
+[node name="Jugador" type="CharacterBody2D" groups=["jugador"]]
+script = ExtResource("1_agb7f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.124, 0.124)
+texture = ExtResource("2_18wvb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jgftb")
+
+[node name="externo" type="Area2D" parent="."]
+script = ExtResource("3_bogig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="externo"]
+shape = SubResource("RectangleShape2D_ln173")
+debug_color = Color(0.658506, 0.512558, 0.150102, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_erwrd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_be7s0")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_po5pr")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_p2ffq")
+autoplay = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(100, 30)
+collide_with_areas = true
+
+[connection signal="area_entered" from="externo" to="." method="_on_externo_area_entered"]
+[connection signal="area_entered" from="externo" to="externo" method="_on_area_entered"]
+[connection signal="area_exited" from="externo" to="." method="_on_externo_area_exited"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd0ss6d8vay36"]
+
+[ext_resource type="Texture2D" uid="uid://dgqgg3ibme3kx" path="res://imagenes/PaneBlock01.png" id="1_cjy6t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raac4"]
+size = Vector2(60, 56)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["kill"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.500003, -0.500001)
+scale = Vector2(0.516393, 0.5)
+texture = ExtResource("1_cjy6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_raac4")
+one_way_collision = true

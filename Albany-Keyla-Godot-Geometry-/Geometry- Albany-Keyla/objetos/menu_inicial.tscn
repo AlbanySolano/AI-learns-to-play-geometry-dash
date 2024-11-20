@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://doa15mqgujo2f"]
+
+[ext_resource type="Script" path="res://scripts/menu_inicial.gd" id="1_45lil"]
+[ext_resource type="Texture2D" uid="uid://cgslmenvlxb8o" path="res://imagenes/neon-grid-background_53876-91657.png" id="1_uwthe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lqhh"]
+bg_color = Color(0.559561, 0.000143622, 0.527343, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g00iy"]
+bg_color = Color(0.560784, 0, 0.52549, 1)
+
+[node name="MenuInicial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45lil")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.293989, 0.134167, 0.000222484, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_uwthe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -131.5
+offset_right = 225.0
+offset_bottom = 131.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_4lqhh")
+text = "PLAY"
+
+[node name="Button2" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_g00iy")
+text = "EXIT"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
